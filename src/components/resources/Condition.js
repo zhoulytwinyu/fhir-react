@@ -14,20 +14,24 @@ class Condition extends React.Component {
       <div>
   			<ResourceContainer {...this.props}>
           <div style={{width:'100%', display:'inline-block'}}>
-            <h4 style={{display: 'inline-block'}}>{_.get(this.props.fhirResource,'code.coding[0].display') || _.get(this.props.fhirResource,'code.text') || ''}</h4>
-            &nbsp;({_.get(this.props.fhirResource,'clinicalStatus') || ''}
-            <span className='text-muted'>{typeof _.get(this.props.fhirResource,'severity.text') === 'undefined' ? '' : ` , ${_.get(this.props.fhirResource,'severity.text')} severity`}</span>)
+            <h4 style={{display: 'inline-block'}}>
+              {_.get(this.props.fhirResource,'code.coding[0].display') || _.get(this.props.fhirResource,'code.text') || ''}
+            </h4>
+            &nbsp;{_.get(this.props.fhirResource,'clinicalStatus') || ''}
+            <span className='text-muted'>
+              {typeof _.get(this.props.fhirResource,'severity.text') === 'undefined' ? '' : ` , ${_.get(this.props.fhirResource,'severity.text')} severity`}
+            </span>
           </div>
           <div className='container'>
             <div className='row pl-0 pr-0'>
               <div className='col-md-4'>
-                {_.get(this.props.fhirResource, 'onsetDateTime') ?
-                  (<div><small className='text-muted text-uppercase'><strong>Onset Date:</strong></small> {_.get(this.props.fhirResource, 'onsetDateTime') || ''}</div>) :
-                ''}
-              </div>
-              <div className='col-md-4'>
-                {_.get(this.props.fhirResource, 'dateRecorded') ?
-                  (<div><small className='text-muted text-uppercase'><strong>Date recorded:</strong></small> {_.get(this.props.fhirResource, 'dateRecorded') || ''}</div>) :
+                {_.get(this.props.fhirResource, 'onsetDateTime') ? (
+                  <div>
+                    <small className='text-muted text-uppercase'><strong>
+                      Onset Date:
+                    </strong></small>
+                    {_.get(this.props.fhirResource, 'onsetDateTime') || ''}
+                  </div>) :
                 ''}
               </div>
               <div className='col-md-4'>
